@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Website Status</title>
+    <script>
+        function checkWebsiteStatus() {
+            const url = document.getElementById('url').value;
+            const statusElement = document.getElementById('status');
+
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        statusElement.textContent = 'The website is up!';
+                        statusElement.style.color = 'green';
+                    } else {
+                        statusElement.textContent = 'The website is down.';
+                        statusElement.style.color = 'red';
+                    }
+                })
+                .catch(error => {
+                    statusElement.textContent = 'The website is down.';
+                    statusElement.style.color = 'red';
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Check Website Status</h1>
+    <input type="text" id="url" placeholder="Enter website URL">
+    <button onclick="checkWebsiteStatus()">Check Status</button>
+    <p id="status"></p>
+</body>
+</html>
